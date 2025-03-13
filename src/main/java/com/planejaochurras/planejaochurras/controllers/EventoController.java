@@ -1,7 +1,6 @@
 package com.planejaochurras.planejaochurras.controllers;
 
 
-import com.planejaochurras.planejaochurras.dtos.EventoDTO;
 import com.planejaochurras.planejaochurras.models.Evento;
 import com.planejaochurras.planejaochurras.services.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,8 @@ public class EventoController {
     }
 
     @PostMapping
-    public Evento criarEvento(@RequestBody EventoDTO evento) {
+    public Evento criarEvento(@RequestBody Evento evento) {
+        System.out.println(evento.isPresencial());
         return eventoService.salvar(evento);
     }
 

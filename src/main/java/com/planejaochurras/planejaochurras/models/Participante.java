@@ -1,6 +1,7 @@
 package com.planejaochurras.planejaochurras.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.planejaochurras.planejaochurras.enums.TipoParticipante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class Participante {
 
     @ManyToOne
     @JoinColumn(name = "evento_id")
+    @JsonBackReference
     private Evento evento;
 
 

@@ -1,6 +1,5 @@
 package com.planejaochurras.planejaochurras.services;
 
-import com.planejaochurras.planejaochurras.dtos.EventoDTO;
 import com.planejaochurras.planejaochurras.models.Evento;
 import com.planejaochurras.planejaochurras.repositories.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +22,11 @@ public class EventoService {
         return eventoRepository.findById(id);
     }
 
-    public Evento salvar(EventoDTO evento) {
-        Evento payloadEvento = new Evento(evento);
-
-
-
+    public Evento salvar(Evento evento) {
+        if (evento.getParticipantes() == null || evento.getParticipantes().isEmpty()) {
+            throw new IllegalArgumentException("O evento deve ter pelo menos um participante.");
+        }
+        evento.getParticipantes().forEach(participante -> participante.setEvento(evento));
         return eventoRepository.save(evento);
     }
 
